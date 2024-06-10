@@ -12,7 +12,7 @@
 </head>
 
 <body class="m-3">
-  <h1>Absensi_siswa</h1>
+  <h1>Daftar Absensi siswa</h1>
 
   <table class="table" id="absensi_siswa">
     <thead>
@@ -46,10 +46,10 @@
       absensi_siswa.forEach((data) => {
         elemenDaftar.append(
           '<tr>' +
-          '<th>' + nomor + '</th>' +
-          '<td>' + data.nama + '</td>' +
+          '<th>' + tanggal + '</th>' +
+          '<td>' + data.tanggal + '</td>' +
           '<td>' + formatAngka(data.harga) + '</td>' +
-          '<td>' + data.stok + '</td>' +
+          '<td>' + data.nama + '</td>' +
           '<td>' + '<button class="btn btn-danger tombol-hapus" data="' + data.id + '">Hapus</button>' + 
           '<img src="loader.gif" style="width: 1em; display: none" id="' + data.id + '">' +
           '</td>' +
