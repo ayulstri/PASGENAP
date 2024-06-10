@@ -25,9 +25,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export async function tambahAbsensi() {
-  const refDokumen = collection(db, "tanggal");
-  const kueri = query(refDokumen, orderBy("nis"));
+export async function ambilDaftarAbsensi() {
+  const refDokumen = collection(db, "absensi");
+  const kueri = query(refDokumen, orderBy("nama"));
   const cuplikanKueri = await getDocs(kueri);
 
   let hasil = [];
@@ -38,36 +38,54 @@ export async function tambahAbsensi() {
       nis: dok.data().nis,
       nama: dok.data().nama,
       alamat: dok.data().alamat,
-      notlpn: dok. data().notlpn,
-      kelas: dok.data().kelas, 
-      keterangan: dok.data().keterangan 
+      noTlpn: dok.data().noTlpn,
+      kelas: dok.data().kelas,
+      keterangan: dok.data().keterangan,
+      
     });
   });
-  
+
+
+
   return hasil;
 }
 
-export function tambahAbsensi(x) {
+export function formatAngka(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-export async function tambahAbsensi(tanggal, nis, nama, alamat, notlpn, kelas, keterangan) {
+export async function tambahAbsensi(tanggal, nis, nama, alamat, noTlpn, kelas, keterangan) {
   try {
-    const dokRef = await addDoc(collection(db, 'produk'), {
-      tanggal:tanggal,
-      nis:nis,
-      nama:nama,
-      alamat:alamat,
-      notlpn:notlpn,
-      kelas:kelas,
-      keterangan:keterangan,
+    const dokRef = await addDoc(collection(db, 'absensi'), {
+      tanggal: tanggal,
+      nis: nis,
+      nama: nama,
+      alamat: alamat,
+      noTlpn: noTlpn,
+      kelas: kelas,
+      keterangan: keterangan
     });
-    console.log('Berhasil menambah absensi ' + dokRef.id);
+    console.log('berhasil menembah ' + dokRef.id);
   } catch (e) {
-    console.log('Gagal menambah absensi ' + e);
+    console.log('gagal menambah ' + e);
   }
 }
 
-export async function AmbilAbsensi(docId) {
-  await deleteDoc(doc(db, "produk", docId));
-}  
+export async function hapusAbsensi(docId) {
+  await deleteDoc(doc(db, "absensi", docId));
+}
+
+export async function ubahPembeli(docId, nama, alamat, noTlpn) {
+  await updateDoc(doc(db, "pembeli", docId), {
+    nama: nama,
+    alamat: alamat,
+    noTlpn: noTlpn
+  });
+}
+
+export async function ambilPembeli(docId) {
+  const docRef = await doc(db, "pembeli", docId);
+  const docSnap = await getDoc(docRef);
+
+  return await docSnap.data();
+}

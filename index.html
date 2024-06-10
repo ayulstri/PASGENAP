@@ -4,17 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Absensi siswa</title>
+  <title>Daftarr Produk</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 </head>
 
-<body class="m-3">
-  <h1>Daftar Absensi siswa</h1>
+<body>
+  <h1>i'm ayulstri38</h1>
+  <h1>Daftar Abseni Siswa</h1>
 
-  <table class="table" id="absensi_siswa">
+
+
+  <table class="table" id="daftar-absensi">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -25,54 +31,102 @@
         <th scope="col">notlpn</th>
         <th scope="col">kelas</th>
         <th scope="col">keterangan</th>
+        <th scope="col">tombol</th></th>
       </tr>
     </thead>
     <tbody>
     </tbody>
   </table>
 
-  <img src="loader.gif" style="width: 2em; display: block" id="loader">
+  <div class="d-flex justify-content-center">
+    <img src="loader.gif" style="width: 15em; display: block" id="loader">
+  </div>
 
-  <a href="form-produk.html">Absensi siswa</a>
+  <div class="d-flex justify-content-center">
+    <button onclick="location.href='form-absensi.html'" style="background-color: blue; color: white; border-radius: 10px;">Tambah Daftar Absensi</button>
+  </div>
+
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    .stack-up {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  </style>
 
   <script type="module">
-    import { absensi_siswa, formatAngka, hapusProduk } from './main.js';
+    import { ambilDaftarAbsensi, formatAngka, hapusAbsensi } from './main.js';
 
     $(document).ready(async function() {
-      let elemenDaftar = $("#daftar-Absensi > tbody");
-      let absensi_siswa = await Absensi_siswa();
+      let elemenDaftar = $("#daftar-absensi > tbody");
+      let daftarAbsensi = await ambilDaftarAbsensi();
       let nomor = 1;
 
-      absensi_siswa.forEach((data) => {
+
+
+      daftarAbsensi.forEach((data) => {
         elemenDaftar.append(
           '<tr>' +
-          '<th>' + tanggal + '</th>' +
+          '<th>' + nomor + '</th>' +
+          '<td>' + data.tanggal + '</td>' +
           '<td>' + data.nis + '</td>' +
           '<td>' + data.nama + '</td>' +
-.         '<td>' + data.alamat + '</td>' +
-          '<td>' + data.notlpn + '</td>' +
-          '<td>' + data.kelas + '</td>' +
-          '<td>' + data.keterangan + '</td>' +
-          
-          '<td>' + '<button class="btn btn-danger tombol-hapus" data="' + data.id + '">Hapus</button>' + 
-          '<img src="loader.gif" style="width: 1em; display: none" id="' + data.id + '">' +
-          '</td>' +
+          '<td>' + data.alamat + '</td>' + '<td>' + data.noTlpn + '</td>' + '<td>' + data.kelas + '</td>' + '<td>' + data.keterangan + '</td>' +
+          '<td class="stack-up">' +
+          ' <a href="#" class="btn btn-warning link-ubah"  data="' +
+          data.id +
+          '">ubah</a> ' +
+          ' <button class="btn btn-danger tombol-hapus" data="' +
+          data.id +
+          '">Hapus</button>' + '</td>' +
           '</tr>'
         );
         nomor = nomor + 1;
       });
 
-      $('#loader').hide();
-
       $('.tombol-hapus').click(async function() {
-        $(this).attr('disabled', 'disabled');
-        $('#' + $(this).attr('data')).show();
-        await absensi_siswa($(this).attr('data'));
+        await hapusAbsensi($(this).attr('data'));
         location.reload();
-      });
+      })
+
+      $('.link-ubah').click(async function() {
+        window.location.replace('ubah-produk.html?docId=' + $(this).attr('data'));
+      })
+
+      $('#loader').hide();
 
     });
   </script>
+    <footer class="py-3 bg-dark-subtle mt-auto">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="index.html" class="nav-link px-2 text-body-secondary">Beranda</a></li>
+      
+      <li class="nav-item"><a href="form-absensi.html" class="nav-link px-2 text-body-secondary">tambah data</a></li>
+    </ul>
+    <p class="text-center text-body-secondary">&copy; 2023 Pasar Cemerlang</p>
+  </footer>
+  
 </body>
 
 </html>
