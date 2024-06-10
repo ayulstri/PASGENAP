@@ -33,23 +33,27 @@
 
   <img src="loader.gif" style="width: 2em; display: block" id="loader">
 
-  <a href="form-produk.html">Absensi_siswa</a>
+  <a href="form-produk.html">Absensi siswa</a>
 
   <script type="module">
     import { absensi_siswa, formatAngka, hapusProduk } from './main.js';
 
     $(document).ready(async function() {
-      let elemenDaftar = $("#daftar-absensi > tbody");
-      let absensi_siswa = await absensi_siswa();
+      let elemenDaftar = $("#daftar-Absensi > tbody");
+      let absensi_siswa = await Absensi_siswa();
       let nomor = 1;
 
       absensi_siswa.forEach((data) => {
         elemenDaftar.append(
           '<tr>' +
           '<th>' + tanggal + '</th>' +
-          '<td>' + data.tanggal + '</td>' +
-          '<td>' + formatAngka(data.harga) + '</td>' +
+          '<td>' + data.nis + '</td>' +
           '<td>' + data.nama + '</td>' +
+.         '<td>' + data.alamat + '</td>' +
+          '<td>' + data.notlpn + '</td>' +
+          '<td>' + data.kelas + '</td>' +
+          '<td>' + data.keterangan + '</td>' +
+          
           '<td>' + '<button class="btn btn-danger tombol-hapus" data="' + data.id + '">Hapus</button>' + 
           '<img src="loader.gif" style="width: 1em; display: none" id="' + data.id + '">' +
           '</td>' +

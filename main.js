@@ -68,6 +68,6 @@ export async function tambahAbsensi(tanggal, nis, nama, alamat, notlpn, kelas, k
   }
 }
 
-export async function Ambilabsensi(docId) {
+export async function AmbilAbsensi(docId) {
   await deleteDoc(doc(db, "produk", docId));
 }  
