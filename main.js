@@ -25,7 +25,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export async function tambahAbsensisiswa() {
+export async function tambahAbsensi() {
   const refDokumen = collection(db, "produk");
   const kueri = query(refDokumen, orderBy("nama"));
   const cuplikanKueri = await getDocs(kueri);
@@ -40,7 +40,7 @@ export async function tambahAbsensisiswa() {
       alamat: dok.data().alamat,
       notlpn: dok. data().notlpn,
       kelas: dok.data().kelas, 
-      keterangan: dok.data(). keterangan 
+      keterangan: dok.data().keterangan 
     });
   });
   
