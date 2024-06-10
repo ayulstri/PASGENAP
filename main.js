@@ -26,8 +26,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export async function tambahAbsensi() {
-  const refDokumen = collection(db, "produk");
-  const kueri = query(refDokumen, orderBy("nama"));
+  const refDokumen = collection(db, "tanggal");
+  const kueri = query(refDokumen, orderBy("nis"));
   const cuplikanKueri = await getDocs(kueri);
 
   let hasil = [];
@@ -51,7 +51,7 @@ export function tambahAbsensi(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-export async function tambahAbsensi(nama, harga, stok) {
+export async function tambahAbsensi(tanggal, nis, nama, alamat, notlpn, kelas, keterangan) {
   try {
     const dokRef = await addDoc(collection(db, 'produk'), {
       tanggal:tanggal,
