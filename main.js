@@ -65,7 +65,7 @@ export async function tambahAbsensi(tanggal, nis, nama, alamat, noTlpn, kelas, k
       kelas: kelas,
       keterangan: keterangan
     });
-    console.log('berhasil menembah ' + dokRef.id);
+    console.log('berhasil menambah ' + dokRef.id);
   } catch (e) {
     console.log('gagal menambah ' + e);
   }
