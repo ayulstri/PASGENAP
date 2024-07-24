@@ -55,13 +55,18 @@
     import { ambilDataSiswa, ubahDataSiswa } from './main.js';
 
     let tombolUbah = document.getElementById('tombol-ubah');
-    let elemenNamaPembeli = document.getElementById('input-nama');
-    let elemenAlamat = document.getElementById('input-alamat');
-    let elemenNoTlpn = document.getElementById('input-noTlpn');
+    let elemenDataSiswa = document.getElementById('input-nama');
+    let elementanggal = document.getElementById('input-tanggal');
+    let elemennis = document.getElementById('input-nis');
+    let elemennama = document.getElementById('input-nama');
+    let elemenalamat = document.getElementById('input-alamat');
+    let elemennolpn = document.getElementById('input-notlpn');
+    let elemenkelas = document.getElementById('input-kelas');
+    let elemenketerangan = document.getElementById('input-keterangan');
     const queryString = window.location.search
     const parameterURL = new URLSearchParams(queryString);
     const docId = parameterURL.get('docId')
-    const pembeli = await ambilPembeli(docId);
+    const pembeli = await ambilDataSiswa(docId);
 
     elemenNamaPembeli.value = pembeli.nama;
     elemenAlamat.value = pembeli.alamat;
