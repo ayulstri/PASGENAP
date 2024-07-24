@@ -52,7 +52,7 @@
 </div>
 
   <script type="module">
-    import { ambilDataSiswa, ubahDataSiswa } from './main.js';
+    import { ambilDataSiswa,ubahDataAbsensi } from './main.js';
 
     let tombolUbah = document.getElementById('tombol-ubah');
     let elemenDataSiswa = document.getElementById('input-nama');
@@ -68,14 +68,18 @@
     const docId = parameterURL.get('docId')
     const pembeli = await ambilDataSiswa(docId);
 
-    elemenNamaPembeli.value = pembeli.nama;
-    elemenAlamat.value = pembeli.alamat;
-    elemenNoTlpn.value = pembeli.noTlpn;
+    elemenNamaSiswa.value = absensi.nama;
+    elemenTanggal.value = absensi.alamat;
+    elemenNis.value = absensi.noTlpn;
+    elemenAlamat.value = absensi.nis;
+    elemenNotlpon.value = absensi.alamat;
+    elemenKelas.value = absensi.notlpon
+    elemenKeterangan = absensi.keterangan;
 
 
     tombolUbah.addEventListener('click', async function(el) {
       el.preventDefault();
-      await ubahPembeli(docId, elemenNamaPembeli.value, elemenAlamat.value, elemenNoTlpn.value);
+      await ubahAbsensi(docId, elemenNamaSiswa.value, elemenTanggal.value, elemenNis.value, elemenAlamat.value, elemenNotlpon.value, elemenKelas.value, elemenKeterangan.value);
       window.location.href = 'index.html';
     });
   </script>
