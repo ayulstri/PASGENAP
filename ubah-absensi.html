@@ -67,13 +67,13 @@
     const docId = parameterURL.get('docId')
     const absensi = await ambilAbsensi(docId);
 
-    elemennama.value = absensi.nama;
-    elementanggal.value = absensi.alamat;
-    elemennis.value = absensi.noTlpn;
+    elementanggal.value = absensi.nama;
+    elemennis.value = absensi.alamat;
+    elemennama.value = absensi.noTlpn;
     elemenalamat.value = absensi.nis;
     elemennotlpon.value = absensi.alamat;
     elemenkelas.value = absensi.notlpon
-    elemenketerangan = absensi.keterangan;
+    elemenketerangan.value= absensi.keterangan;
 
 
     tombolUbah.addEventListener('click', async function(el) {
