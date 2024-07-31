@@ -67,12 +67,12 @@
     const docId = parameterURL.get('docId')
     const absensi = await ambilAbsensi(docId);
 
-    elementanggal.value = absensi.nama;
-    elemennis.value = absensi.alamat;
-    elemennama.value = absensi.noTlpn;
-    elemenalamat.value = absensi.nis;
-    elemennotlpon.value = absensi.alamat;
-    elemenkelas.value = absensi.notlpon
+    elementanggal.value = absensi.tanggal;
+    elemennis.value = absensi.nis;
+    elemennama.value = absensi.nama;
+    elemenalamat.value = absensi.alamat;
+    elemennotlpon.value = absensi.notlpon;
+    elemenkelas.value = absensi.kelas;
     elemenketerangan.value= absensi.keterangan;
 
 
