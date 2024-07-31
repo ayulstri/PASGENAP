@@ -48,7 +48,7 @@
   </form>
 
 <div class="d-flex justify-content-center">
-  <button onclick="location.href='index.html'" style="background-color: blue; color: white; border-radius: 10px;">lihat data penjual</button>
+  <button onclick="location.href='index.html'" style="background-color: blue; color: white; border-radius: 10px;">absensi</button>
 </div>
 
   <script type="module">
@@ -79,7 +79,7 @@
 
     tombolUbah.addEventListener('click', async function(el) {
       el.preventDefault();
-      await ubahAbsensi(docId, elemenNamaSiswa.value, elemenTanggal.value, elemenNis.value,elemenNama.value elemenAlamat.value, elemenNotlpon.value, elemenKelas.value, elemenKeterangan.value);
+      await ubahAbsensi(docId, elemenNamaSiswa.value, elemenTanggal.value, elemenNis.value,elemenNama.value, elemenAlamat.value, elemenNotlpon.value, elemenKelas.value, elemenKeterangan.value);
       window.location.href = 'index.html'; 
     });
   </script>
