@@ -66,7 +66,7 @@
     const queryString = window.location.search
     const parameterURL = new URLSearchParams(queryString);
     const docId = parameterURL.get('docId')
-    const pembeli = await ambilDataSiswa(docId);
+    const pembeli = await ambilAbsensi(docId);
 
     elemenNamaSiswa.value = absensi.nama;
     elemenTanggal.value = absensi.alamat;
@@ -79,8 +79,8 @@
 
     tombolUbah.addEventListener('click', async function(el) {
       el.preventDefault();
-      await ubahAbsensi(docId, elemenNamaSiswa.value, elemenTanggal.value, elemenNis.value, elemenAlamat.value, elemenNotlpon.value, elemenKelas.value, elemenKeterangan.value);
-      window.location.href = 'index.html';
+      await ubahAbsensi(docId, elemenNamaSiswa.value, elemenTanggal.value, elemenNis.value,elemenNama.value elemenAlamat.value, elemenNotlpon.value, elemenKelas.value, elemenKeterangan.value);
+      window.location.href = 'index.html'; 
     });
   </script>
 </body>
